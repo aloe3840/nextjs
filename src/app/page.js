@@ -22,3 +22,6 @@ export default async function Home() {
 
 //app폴더가 기본경로 'http://localhost:3000'
 //http://localhost:3000/list --> app폴더에 list폴더 만들고 page.js파일
+
+//배포하려면 npm run build
+//build폴더의 내용을 클라우드(AWS, vercel)에 업로드하고 npm run start
