@@ -1,10 +1,16 @@
 import Link from "next/link";
-import { connectDB } from "../util/db";
+import { connectDB } from "../../util/db";
 import ListItem from "./listItem";
 
 export default async function ListPage(){
     const db = (await connectDB).db('mydb');  
     let result = await db.collection('post').find().toArray();
+
+    //_id를 문자열로 변환
+    result = result.map(item => ({
+        ...item,
+        _id: item._id.toString(),
+    }))
 
     return(
         <div className="list-bg">

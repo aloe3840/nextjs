@@ -3,21 +3,32 @@
     /api/post/new로 요청하면 이 서버 파일이 실행된다
 */
 
-import { connectDB } from "@/app/util/db";
+import { connectDB } from "@/util/db";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]";
 
 export default async function writeHandler(req, res){
     //POST요청에는 body라는 곳에 데이터를 담아보냄 (req.body에 input에 입력한 것들이 있음)
     console.log(req.body)
 
+    let session = await getServerSession(req, res, authOptions)
+    console.log(session);
+
     if(req.method == 'POST'){
         //body에 담긴 값들을 꺼내고 비어있지 않으면 mongodb에 insertOne입력
         //요청한 페이지로 돌려보내기 (302, 'URL')
         let {title, content} = req.body
-        if(title && content){
+
+        if(session){
+            req.body.email = session.user?.email; 
+        }
+
+        if(title && content && req.body.email){
             try{
                 //이 코드를 실행
+                const email = req.body.email
                 const db = (await connectDB).db('mydb');  
-                let result = await db.collection('post').insertOne({title, content})
+                let result = await db.collection('post').insertOne({title, content, email}) //제목, 내용, 이메일
                 return res.redirect(302, '/list')  //끝나면 /list페이지로 이동시키기
             }catch(error){
                 //에러 나면 이쪽으로 이동

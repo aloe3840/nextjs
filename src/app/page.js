@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { connectDB } from "./util/db";
+import { connectDB } from "../util/db";
 
 export default async function Home() {
   const client = await connectDB; //오래 걸리는 작업은 건너뛰고 다음 코드 실행 (-> await으로 기다리게 만들어줌)

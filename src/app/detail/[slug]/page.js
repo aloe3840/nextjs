@@ -1,4 +1,4 @@
-import { connectDB } from "@/app/util/db";
+import { connectDB } from "@/util/db";
 import { ObjectId } from "mongodb";
 
 //디테일 페이지를 여러개 만들거임 ex. detail1, detail2

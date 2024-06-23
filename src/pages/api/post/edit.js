@@ -1,6 +1,6 @@
 //--> /api/post/edit으로 요청하면 동작할 서버함수
 
-import { connectDB } from "@/app/util/db";
+import { connectDB } from "@/util/db";
 import { ObjectId } from "mongodb";
 
 //받아온 input정보로 DB에 수정하고 list페이지로 이동 시키기

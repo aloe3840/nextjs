@@ -29,7 +29,7 @@ export default function ListItem({result}){
                         fetch('/api/delete/list_item', {
                             method: 'DELETE', 
                             headers: {'Content-Type': 'application/json'},  //내가 보내는 타입이 json타입이다!
-                            body: JSON.stringify({id:item._id})
+                            body: JSON.stringify({id:item._id, email: item.email})
                         })
                         .then((res)=>{  //fetch로 요청해서 then으로 받아옴(fetch도 use client있어야함)
                             //fetch가 완료되면 실행할 코드 (res)에는 서버응답이 담겨있음
@@ -40,8 +40,8 @@ export default function ListItem({result}){
                                 //filter() : 입력한 값을 배열에서 찾아 걸러줌
                                 setListDate(prev => prev.filter((i)=>i._id !== item._id));  //중괄호 생략하면 return도 생략가능
                                 return res.json();  //then에서 return하면 다음 then의 매개변수로 옮겨감
-                            }else{
-                                //200성공이 아닐 때는 state를 변경하지 않는다
+                            }else if(res.status == 400){
+                                alert('글 작성자만 삭제할 수 있습니다.')
                                 return res.json()
                             }
                         })  

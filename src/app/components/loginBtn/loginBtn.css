@@ -1,0 +1,18 @@
+.user-signup{
+    background-color: red;
+    border-radius: 4px;
+    font-size: 13px;
+    padding: 6px 8px;
+    font-weight: 600;
+    border: 1px solid rgb(255, 255, 255);
+}
+
+.login-logout{
+    background-color: rgb(255, 255, 255);
+    padding: 4px 7px;
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    font-weight: 800;
+    border: 2px solid rgb(160, 160, 160);
+    margin-right: 10px;
+}

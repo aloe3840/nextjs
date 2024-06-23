@@ -65,3 +65,9 @@ a{
 .logo{
   font-weight: 800;
 }
+
+.signup-page input{
+  padding: 10px;
+  display: block;
+  margin: 15px;
+}
