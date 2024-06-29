@@ -22,7 +22,7 @@ export default async function EditPage({params}){
         const resultIdString = result._id.toString();
 
         //로그인한 이메일이 글의 이메일과 동일한지 체크
-        if(sesson.user?.email == result.email){
+        if(session.user?.email == result.email){
             return(
                 <div className="write-container">
                     <h4>수정 페이지</h4>

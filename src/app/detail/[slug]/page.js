@@ -1,3 +1,4 @@
+import Comment from "@/app/components/comment/comment";
 import { connectDB } from "@/util/db";
 import { ObjectId } from "mongodb";
 
@@ -18,9 +19,9 @@ export default async function DetailPage({params}){
 
     return(
         <div>
-            <h4>상세페이지</h4>
             <h4>{result.title}</h4>
             <p>{result.content}</p>
+            <Comment boardId={result?._id.toString()}/>  {/* 보안문자로 안넘어가서 문자열로 바꿔서 props로 넘김 */}
         </div>
     )
 }

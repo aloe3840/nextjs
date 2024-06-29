@@ -11,10 +11,10 @@ export default async function handler(req, res){
             //npm install bcrypt
             let hash = await bcrypt.hash(req.body.password, 10)
             req.body.password = hash;
+            console.log(req.body)
 
             let db = (await connectDB).db('mydb');
             await db.collection('user').insertOne(req.body)
-        
             return res.redirect(302, '/api/auth/signin') //로그인 페이지로 이동
         }else{
             res.status(400).json({error: 'method only POST'})
