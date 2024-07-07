@@ -6,15 +6,21 @@ import bcrypt from 'bcrypt';
 import { connectDB } from "@/util/db";
 //구글로그인, 깃허브로그인을 연결해줌
 
+const googleId = process.env.google_id;
+const googleSecret= process.env.google_secret;
+const githubId = process.env.github_id;
+const githubSecret = process.env.github_secret;
+
+
 export const authOptions = {
     providers: [
         GoogleProvider({
-            clientId: '',    //구글 클라이언트 ID
-            clientSecret: '',    //구글 클라이언트 보안 비밀번호
+            clientId: googleId,    //구글 클라이언트 ID
+            clientSecret: googleSecret,    //구글 클라이언트 보안 비밀번호
         }),
         GithubProvider({  
-            clientId: '',    //깃허브 클라이언트 ID
-            clientSecret: '',  //깃허브 클라이언트 비밀번호
+            clientId: githubId,    //깃허브 클라이언트 ID
+            clientSecret: githubSecret,  //깃허브 클라이언트 비밀번호
         }),
         CredentialsProvider({
             name: 'credentials',
